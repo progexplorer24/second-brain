@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "next",
+    "dev": "nodemon",
     "build": "next build",
     "start": "next start",
     "debug": "NODE_OPTIONS='--inspect' next dev",
@@ -12,11 +12,11 @@
     "clean": "rimraf .next .turbo"
   },
   "dependencies": {
-    "react": "*",
-    "react-dom": "*",
     "next": ">=13",
     "nextra": "workspace:*",
-    "nextra-theme-docs": "workspace:*"
+    "nextra-theme-docs": "workspace:*",
+    "react": "*",
+    "react-dom": "*"
   },
   "dependenciesMeta": {
     "nextra": {
@@ -25,5 +25,8 @@
     "nextra-theme-docs": {
       "injected": true
     }
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }
