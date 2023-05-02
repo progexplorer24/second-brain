@@ -1,4 +1,7 @@
-# MDX
+# Get Started
+
+
+## MDX Components
 
 With Nextra, all your `.md` and `.mdx` files under the pages directory will be rendered with [MDX](https://mdxjs.com/about), it's an
 advanced Markdown format with React component support.
@@ -20,8 +23,6 @@ import { Callout } from 'nextra-theme-docs'
 
 Generates:
 
-import { Callout } from 'nextra-theme-docs'
-
 <div className="p-4 border border-gray-200 dark:border-gray-900 rounded mt-6">
 **Markdown With React Components**
 
@@ -33,7 +34,7 @@ import { Callout } from 'nextra-theme-docs'
 </Callout>
 </div>
 
-## Heading
+### Heading
 
 <br />
 
@@ -50,7 +51,7 @@ import { Callout } from 'nextra-theme-docs'
 
 ###### **Hello**, This Is a _Title_ Inside `h6`
 
-## List
+### List
 
 1. one
 2. two
@@ -60,7 +61,7 @@ import { Callout } from 'nextra-theme-docs'
 - two
 - three
 
-## Task List
+### Task List
 
 ```mdx
 - [x] Write the press release
@@ -74,7 +75,7 @@ Renders
 - [ ] Update the website
 - [ ] Contact the media
 
-## Syntax Highlighting
+### Syntax Highlighting
 
 Automatic syntax highlighting
 
@@ -118,11 +119,11 @@ function Profile() {
 }
 ```
 
-## Inline Code
+### Inline Code
 
 You can use \`content\` to wrap inline code content like: `let x = 1`.
 
-## Blockquote
+### Blockquote
 
 > Where some people measure progress in answers-right per test or tests-passed per year, we are more interested in Sistine-Chapel-Ceilings per Lifetime.
 >
@@ -138,7 +139,7 @@ Nested quotes:
 >
 > — Shu Ding.
 
-## Table
+### Table
 
 | Syntax        | Description |   Test Text |
 | :------------ | :---------: | ----------: |
@@ -159,3 +160,108 @@ Renders:
 > <Callout>
 >   Give [**Nextra**](https://github.com/shuding/nextra) a star!
 > </Callout>
+
+## Nextra Components
+
+import { Tabs, Tab, Callout } from 'nextra-theme-docs'
+
+
+### Callout
+
+<span id="sidebar-and-anchor-links" />
+<Callout>
+  Any `.md` or `.mdx` file will turn into a doc page and be displayed in
+  sidebar. You can also create a `meta.json` file to customize the page order
+  and title. <br /> Check the source code: https://github.com/shuding/nextra for
+  more information.
+</Callout>
+
+### Tabs
+
+<Tabs items={['npm', 'yarn', 'pnpm']} defaultIndex={1}>
+  <Tab>
+    ```bash
+    npm i react react-dom next nextra
+    ```
+  </Tab>
+  <Tab>
+    ```bash
+    yarn add react react-dom next nextra
+    ```
+  </Tab>
+  <Tab>
+    ```bash
+    pnpm i react react-dom next nextra
+    ```
+  </Tab>
+</Tabs>
+
+<Tabs items={['npm', 'yarn', 'pnpm']} defaultIndex={1}>
+  <Tab>
+    ```bash
+    npm i nextra-theme-docs
+    ```
+  </Tab>
+  <Tab>
+    ```bash
+    yarn add nextra-theme-docs
+    ```
+  </Tab>
+  <Tab>
+    ```bash
+    pnpm i nextra-theme-docs
+    ```
+  </Tab>
+</Tabs>
+
+Example with filename:
+
+```js filename="next.config.js"
+const withNextra = require('nextra')({
+  theme: 'nextra-theme-blog',
+  themeConfig: './theme.config.js'
+  // optional: add `staticImage: true` to enable Nextra's auto image import
+})
+module.exports = withNextra()
+```
+
+### `theme.config.js` for customizing layout
+```js filename="theme.config.js"
+/**
+ * @type {import('nextra-theme-docs').DocsThemeConfig}
+ */
+export default {
+  project:{
+    link: 'https://github.com/shuding/nextra' // GitHub link in the navbar
+  },
+  docsRepositoryBase: 'https://github.com/shuding/nextra/blob/master', // base URL for the docs repository
+  getNextSeoProps: () => ({ titleTemplate: '%s – Nextra' }),
+  navigation: true,
+  darkMode: true,
+  footer: {
+    text: `MIT ${new Date().getFullYear()} © Shu Ding.`
+  },
+  editLink: {
+    text: 'Edit this page on GitHub'
+  },
+  logo: (
+    <>
+      <svg>...</svg>
+      <span>Next.js Static Site Generator</span>
+    </>
+  ),
+  head: (
+    <>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="description" content="Nextra: the next docs builder" />
+      <meta name="og:title" content="Nextra: the next docs builder" />
+    </>
+  ),
+  primaryHue: {
+    dark: 204,
+    light: 212
+  }
+}
+```
+
+

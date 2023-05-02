@@ -1,7 +1,9 @@
 {
   "index": "Introduction",
-  "get-started": "Get Started",
+  "getting-started": "Features",
   "features": "Features",
-  "themes": "Themes",
-  "advanced": "Advanced"
+  "stanag": "STANAG",
+  "htb": "HTB",
+  "ejpt": "eJPT",
+  "vim": "Vim"
 }
