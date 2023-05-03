@@ -1,9 +1,7 @@
 {
   "index": "Introduction",
   "getting-started": "Features",
-  "features": "Features",
-  "stanag": "STANAG",
-  "htb": "HTB",
-  "ejpt": "eJPT",
-  "vim": "Vim"
+  "cybersecurity": "Cybersecurity",
+  "vim": "Vim",
+  "stanag": "STANAG"
 }
