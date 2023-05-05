@@ -8,8 +8,11 @@
   "link": "Next.js Link",
   "latex": "LaTeX",
   "typescript": "",
-  "advanced": "",
   "custom-theme": "",
   "page-configuration": "",
-  "theme-configuration": ""
+  "theme-configuration": "",
+  "table": "",
+  "callout": "",
+  "steps": "",
+  "tabs": ""
 }
