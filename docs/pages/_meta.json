@@ -1,8 +1,10 @@
 {
   "index": "Introduction",
   "guide": "",
-  "cybersecurity": "",
+  "htb": "HTB",
   "vim": "VIM",
+  "huberman-lab": "Huberman Lab",
+  "thoughts": "",
   "stanag": "STANAG",
  "showcase": {
     "title": "Showcase",
