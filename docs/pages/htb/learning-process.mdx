@@ -355,27 +355,253 @@ This situation looks a lot different if we have a vault in front of us that requ
 
 ### Relationship Oriented Questioning (ROQ)
 
+**What all our questions have in common?**
+
 <Image src="/assets/questioning1.png" width={1301} height={859} />
 > Source: https://academy.hackthebox.com/module/9/section/1583
+
+Model consist of five components:
+
+|Component|Description|
+|---|---|
+|Your Position|Position we are in and our view.|
+|The Object|Core element of the question. The main component of our sentence takes meaning out of the question.|
+|Known|This information is known to us.|
+|Unknown|This information is not known to us.|
+|Other Position(s)|This component describes position of other persons.|
+
+We want model to be universal -> ask any question correctly
+
+> 1. Find core element of the question and insert it as the object.
+> 2. You need to use at least 2 components out of five.
+
+One component is always given in all questions:
+> Your position in the question.
+
+**What are all the methods available to remotely access Windows operating systems?**
+
+Putting it inside `ROQ` model we get:
+
+|Component|Question Part|Description|
+|---|---|---|
+|Your Position||Position we are in and our view.|
+|The Object|Windows|Core element of the question. The main component of our sentence takes meaning out of the question.|
+|Known|Methods|This information is known to us.|
+|Unknown|Methods|This information is not known to us.|
+|Other Position(s)||This component describes position of other persons.|
+
+___
 
 <Image src="/assets/questioning2.png" width={1368} height={932} />
 > Source: https://academy.hackthebox.com/module/9/section/1583
 
+Lines represent relationship between components:
+
+- `Solid line`: Connection - How is X connected to Y?
+- `Dashed line`: Affection - How does Y influence the state of component X?
+
+### Connecting components
+
+Always start with the object relationships.
+
+**What is the purpose for us to use Windows?**
+
+> Use its functions to solve our tasks -> To operate on it.
+
+**How does Windows influence our state in our position?**
+
+> Windows provides us with functionality to use our computer.
+
+---
+
 <Image src="/assets/questioning3.png" width={1306} height={928} />
 > Source: https://academy.hackthebox.com/module/9/section/1583
+
+**What must Windows do or offer to be managed by romote access methods?**
+
+> A service must allow remote access over the Internet or network. Examples of such tools are `WinRM, Remote Desktop`. We can call this connection `Listening Service`.
+
+**How do the remote access methods affect Windows and thus change the state of Windows? What do these methods provide us with?**
+
+> Remote Access
+
+---
 
 <Image src="/assets/questioning4.png" width={1330} height={930} />
 > Source: https://academy.hackthebox.com/module/9/section/1583
 
+**What is the purpose of remote access methods?**
+
+> To use computer in different ways remotely.
+
+**How do the different remote access methods that we know affect us?**
+
+> They allow us to interact with Windows.
+
+---
+
 <Image src="/assets/questioning5.png" width={1355} height={928} />
 > Source: https://academy.hackthebox.com/module/9/section/1583
+
+**Which services must Windows have running to use methods unknown to us?**
+
+> We cannot know this because this methods are unknown to us. Therefore we name it like this: `???` 
+
+**How do the remote access methods affect Windows and thus change the state of Windows? What do these methods offer to us?
+
+> Purpose of known and unknown methods is the same -> Remote Access.
+
+---
 
 <Image src="/assets/questioning6.png" width={1321} height={929} />
 > Source: https://academy.hackthebox.com/module/9/section/1583
 
+Knowing relationships between components allows us to be much more precise in defining information we should be focusing on. In this case, we should take a closer look at
+all possible `Windows services` to find unknown methods that allow remote access.
+
+This model is stackable, so you can convert things that are unknown into known.
+
+---
+
 <Image src="/assets/questioning7.png" width={1412} height={1610} />
 > Source: https://academy.hackthebox.com/module/9/section/1583
 
+### Practice
+
+> How do I start a Tesla car?
+
+|Component|Question Part|Description|
+|---|---|---|
+|Your Position||Position we are in and our view.|
+|The Object|Tesla Car|Core element of the question. The main component of our sentence takes meaning out of the question.|
+|Known|Methods to start a car|This information is known to us.|
+|Unknown|Methods to start a car|This information is not known to us.|
+|Other Position(s)||This component describes position of other persons.|
+
+Relationship between elements
+
+Me & Tesla Car
+> My position ---> Drive ---> Tesla Car
+
+> Tesla Car ---> Increases mobility ---> My Position
+
+Tesla Car & Known methods to start a car
+
+> Tesla Car ---> Authorization Service ---> Methods to start a car
+
+> Methods to start a car ---> Enable access ---> Tesla Car 
+
+Tesla Car & Unknown methods to start a car
+
+> Tesla Car ---> ??? ---> Methods to start a car
+
+> Methods to start a car ---> Enable Access ---> Tesla Car 
+
+We need to find all unknown methods to start Tesla engine.
+
+Me & Known Methods to start a car
+
+> Me ---> Using ---> Methods to start a car
+
+> Methods to start a car ---> allow to interact with ---> Me
+
+
+> How to improve your focus?
+
+|Component|Question Part|Description|
+|---|---|---|
+|Your Position||Position we are in and our view.|
+|The Object|Focus|Core element of the question. The main component of our sentence takes meaning out of the question.|
+|Known|Ways to improve|This information is known to us.|
+|Unknown|Ways to improve|This information is not known to us.|
+|Other Position(s)||This component describes position of other persons.|
+
+Relationship between elements
+
+Me & Focus
+> My position ---> Life control ---> Focus
+
+> Focus ---> Allows task completion ---> My Position
+
+Foucs & Known ways to improve
+> Focus ---> Deliberate practice ---> Ways to improve
+
+> Ways to improve ---> Increases productivity ---> Focus
+
+Foucs & Unknown ways to improve
+> Focus ---> Deliberate practice ---> Ways to improve
+
+> Ways to improve ---> ??? ---> Focus
+
+Me & Known ways to improve focus
+
+> Me ---> Using ---> Known methods to improve focus
+
+> Known methods to improve focus ---> Allow to make best use of ---> Me
+
+> How to write a good penetration test report?
+
+|Component|Question Part|Description|
+|---|---|---|
+|Your Position||Position we are in and our view.|
+|The Object|Penetration Test Report|Core element of the question. The main component of our sentence takes meaning out of the question.|
+|Known|Styles of writing|This information is known to us.|
+|Unknown|Styles of writing|This information is not known to us.|
+|Other Position(s)||This component describes position of other persons.|
+
+Me & Penetration Testing Reports
+
+> Me ---> Writing ---> Penetration Testing Report
+
+> Penetration Testing Report ---> Documents testing process ---> Me
+
+Penetration Testing Report & Known styles of writing
+
+> PT Report ---> Industry Standards/Best Practices ---> Styles of writing
+
+> Styles of writing ---> Quality ---> PT Report
+
+Me & Known styles of writing
+
+> Me ---> Using ---> Known styles of writing
+
+> Known styles of writing ---> Allow to produce ---> ME
+
+Penetration Testing Report & Unknown styles of writing
+
+> PT Report ---> Industry Standards/Best Practices ---> Unknown styles of writing
+
+> Unknown style of writing ---> ??? ---> PT Report
+
+**What is a right question?**
+
+> A right question is a precise question that allows us to establish the relationships between the components, to understand them, and to take us one step further to the
+> required answer.
+
 ## Handling Frustration
+
+**What is frustration?**
+
+> Emotional reaction to an event. It occurs in form of disappointment or powerlessness. Can be caused by `external influences` or inner thought processes. 
+
+> Frustration tolerance can be trained and developed.
+
+**Where does frustration tolerance comes from?**
+
+> You have control over your internal state of frustration.
+
+## Learning Process
+
+**How to track and measure your progress?**
+
+> Accountability mirror
+
+> Start writing down your skills and knowledge.
+
+> Continuously develop a list of your new skills
+
+> Document your learning process in details.
+
+> Compound Interes Principle in learning process ---> Small changes adds up over time.
 
 
