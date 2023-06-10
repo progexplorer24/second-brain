@@ -5,12 +5,5 @@
   "vim": "VIM",
   "huberman-lab": "Huberman Lab",
   "thoughts": "",
-  "stanag": "STANAG",
- "showcase": {
-    "title": "Showcase",
-    "theme": {
-      "typesetting": "article",
-      "layout": "full"
-    }
-  }
+  "stanag": "STANAG"
 }

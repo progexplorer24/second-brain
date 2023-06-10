@@ -1,6 +1,6 @@
-{   
-    "ignore": ["node_modules", ".next"],
-    "watch": ["../../packages/nextra-theme-docs/dist/**/*"],
-    "ext": "js json",
-    "exec": "next dev"
+{
+  "ignore": ["node_modules", ".next"],
+  "watch": ["../../packages/nextra-theme-docs/dist/**/*"],
+  "ext": "js json",
+  "exec": "next dev"
 }

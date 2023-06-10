@@ -48,7 +48,7 @@ Renders:
 
 ```mdx
 ## Hello MDX
- 
+
 import { useState } from 'react'
  
 export function Counter({ children }) {
@@ -58,22 +58,28 @@ export function Counter({ children }) {
   </button>
 }
  
-<Counter>**Clicks**: </Counter>
+<Counter>**Clicks**: </Counter
+
+>
 ```
+
 Renders:
 
 ## Hello MDX
- 
+
 import { useState } from 'react'
- 
+
 export function Counter({ children }) {
   const [count, setCount] = useState(0)
-  return <button onClick={() => setCount(count + 1)}>
-    {children}{count}
-  </button>
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      {children}
+      {count}
+    </button>
+  )
 }
- 
-<Counter>**Clicks**: </Counter>
+
+;<Counter>**Clicks**: </Counter>
 
 ## Callout
 
@@ -85,6 +91,7 @@ export function Counter({ children }) {
   more information.
 </Callout>
 ```
+
 <Callout>
   Any `.md` or `.mdx` file will turn into a doc page and be displayed in
   sidebar. You can also create a `meta.json` file to customize the page order
@@ -95,37 +102,13 @@ export function Counter({ children }) {
 ### Tabs
 
 <Tabs items={['npm', 'yarn', 'pnpm']} defaultIndex={1}>
-  <Tab>
-    ```bash
-    npm i react react-dom next nextra
-    ```
-  </Tab>
-  <Tab>
-    ```bash
-    yarn add react react-dom next nextra
-    ```
-  </Tab>
-  <Tab>
-    ```bash
-    pnpm i react react-dom next nextra
-    ```
-  </Tab>
+  <Tab>```bash npm i react react-dom next nextra ```</Tab>
+  <Tab>```bash yarn add react react-dom next nextra ```</Tab>
+  <Tab>```bash pnpm i react react-dom next nextra ```</Tab>
 </Tabs>
 
 <Tabs items={['npm', 'yarn', 'pnpm']} defaultIndex={1}>
-  <Tab>
-    ```bash
-    npm i nextra-theme-docs
-    ```
-  </Tab>
-  <Tab>
-    ```bash
-    yarn add nextra-theme-docs
-    ```
-  </Tab>
-  <Tab>
-    ```bash
-    pnpm i nextra-theme-docs
-    ```
-  </Tab>
+  <Tab>```bash npm i nextra-theme-docs ```</Tab>
+  <Tab>```bash yarn add nextra-theme-docs ```</Tab>
+  <Tab>```bash pnpm i nextra-theme-docs ```</Tab>
 </Tabs>

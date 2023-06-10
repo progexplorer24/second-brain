@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 # Introduction to Networking Walkthrough
 
 ## Networking Overview
@@ -200,7 +198,6 @@ Connections can be divided into three areas:
 
 Nodes network components can be divided into:
 
-|||||
 |---|---|---|---|
 | Repeaters | Hubs | Bridges | Switches |
 | Router/Modem | Gateways | Firewalls |
@@ -209,125 +206,9 @@ Nodes are connection points to transmitters and receivers of electrical, optical
 
 **Describe basic types of network topologies.**
 
-### Point-to-Point
-
-Simplest topology. Physical link exists only between `two hosts`. It enables mutual communication.
-
-It's basic model for traditional telephon networks. It should not be confused with `P2P (Peer-to-Peer)` architecture.
-
-<Image src="/assets/topo_p2p.png" width={2576} height={684} /> 
-
-> Source: https://academy.hackthebox.com/module/34/section/299 
-
-### Bus 
-
-All host connected via transmission medium (cabel). Every host has access to signals transmitted
-over it. There is no central component that controls processes on it.
-
-In this model **only one host sends data**, the rest receive and evaluate if data was intended for them.
-
-<Image src="/assets/topo_bus.png" width={2576} height={1294} /> 
-
-> Source: https://academy.hackthebox.com/module/34/section/299 
-
-### Star 
-
-In this model we have a central network component (router, hub or switch) that is connected to all hosts.
-Each host is connected via separate link. Component role is to forward data packets to its destination.
-It receives data and then forwards it to destination (acts like middleware).
-
-<Image src="/assets/topo_star.png" width={2576} height={1707} /> 
-
-> Source: https://academy.hackthebox.com/module/34/section/299 
-
-### Ring 
-
-Physical ring connects each host with two cabels:
-
-- one for `incoming` signals
-- the other for `outgoing` signals
-
-Control and access over this type of network are regulated by a protocol to which all stations adhere.
-
-`Logical` ring topology is based on a physical star topology, where distributor simulates ring.
-
-<Image src="/assets/topo_ring.png" width={2576} height={1746} /> 
-
-> Source: https://academy.hackthebox.com/module/34/section/299 
-
-### Mesh 
-
-In a fully meshed structure each host is connected to every other host in the network.
-
-This technique is used for `WAN` and `MAN` networks to ensure high reliability and bandwidth.
-
-Each node has the same routing functions and knows the neighboring nodes.
-
-In the `partially meshed structure`, the endpoints are connected by only one connection.
-
-<Image src="/assets/topo_mesh.png" width={2576} height={2024} /> 
-
-> Source: https://academy.hackthebox.com/module/34/section/299 
-
-### Tree 
-
-Extended star topology. Especially useful when several topologies are combined.
-
-<Image src="/assets/topo_tree.png" width={2576} height={1715} /> 
-
-> Source: https://academy.hackthebox.com/module/34/section/299 
-
-### Hybrid 
-
-Mix of at least two different standard topologies. 
-
-<Image src="/assets/topo_hybrid.png" width={2576} height={1726} /> 
-
-> Source: https://academy.hackthebox.com/module/34/section/299 
-
-### Daisy Chain 
-
-Multiple hosts connected by a cable from one node to another. It creates series of connections (chain) between hardware.
-Popular in automation technology. This type of connection is dependant on physical arrangement.
-
-<Image src="/assets/topo_daisy-chain.png" width={2576} height={1716} /> 
-
-> Source: https://academy.hackthebox.com/module/34/section/299 
+> 
 
 ## Proxies
-
-**What is a proxy?**
-
-It's a device or service that sits in the middle of a connection and acts as a mediator.
-Devices like that have to be able to inspect the contents of the traffic. Without it,
-device would be called `gateway`.
-
-Proxies almost always operate at Layer 7 of the OSI Model. Most common proxy types are:
-
-- `Dedicated Proxy / Forward Proxy`
-- `Reverse Proxy`
-- `Transparent Proxy`
-
-**What is forward proxy?**
-
-Client makes a request to a computer and that computer carries out the request.
-
-For example, in corporate network, sensitive computers may not have direct access to the Internet.
-So to access a website we have to go through a proxy (web filter).
-
-**What is a reverse proxy?**
-
-Forward proxy filters outgoing requests through network.
-
-Reverse proxy filters incoming requests.
-
-CloudFlare is a good example of reverse proxy. It is used to filter the amount (and type) of traffic
-that gets sent to the webservers.
-
-Penetration Testers will configure reverse proxies on infected endpoint. This is useful to bypass
-firewalls or evade logging.
-
-Another common reverse proxy examples is `ModSecurity`.
 
 ## Networking Models
 
