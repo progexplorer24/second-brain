@@ -4,6 +4,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon",
     "build": "next build",
     "clean": "rimraf .next .turbo",
     "debug": "NODE_OPTIONS='--inspect' next dev",
@@ -25,5 +26,8 @@
     "nextra-theme-docs": {
       "injected": true
     }
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }

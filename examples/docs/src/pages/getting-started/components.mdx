@@ -1,0 +1,114 @@
+import { Tabs, Tab, Callout } from 'nextra-theme-docs'
+
+# React Components
+
+With Nextra, all your `.md` and `.mdx` files under the pages directory will be rendered with [MDX](https://mdxjs.com/about), it's an
+advanced Markdown format with React component support.
+
+You can use import and use React components inside your Markdown files like this:
+
+```mdx filename="example.mdx"
+import { Callout } from 'nextra-theme-docs'
+
+**Markdown With React Components**
+
+<Callout emoji="✅">
+  **MDX** (the library), at its core, transforms MDX (the syntax) to JSX. It
+  receives an MDX string and outputs a _JSX string_. It does this by parsing the
+  MDX document to a syntax tree and then generates a JSX document from that
+  tree.
+</Callout>
+```
+
+Generates:
+
+<div className="p-4 border border-gray-200 dark:border-gray-900 rounded mt-6">
+**Markdown With React Components**
+
+<Callout emoji="✅">
+  **MDX** (the library), at its core, transforms MDX (the syntax) to JSX. It
+  receives an MDX string and outputs a _JSX string_. It does this by parsing the
+  MDX document to a syntax tree and then generates a JSX document from that
+  tree.
+</Callout>
+</div>
+React components and Markdown can be **mixed together**, for instance:
+
+```mdx
+<Callout>Give [**Nextra**](https://github.com/shuding/nextra) a star!</Callout>
+```
+
+Renders:
+
+> <Callout>
+>   Give [**Nextra**](https://github.com/shuding/nextra) a star!
+> </Callout>
+
+## Custom Component
+
+```mdx
+## Hello MDX
+
+import { useState } from 'react'
+ 
+export function Counter({ children }) {
+  const [count, setCount] = useState(0)
+  return <button onClick={() => setCount(count + 1)}>
+    {children}{count}
+  </button>
+}
+ 
+<Counter>**Clicks**: </Counter
+
+>
+```
+
+Renders:
+
+## Hello MDX
+
+import { useState } from 'react'
+
+export function Counter({ children }) {
+  const [count, setCount] = useState(0)
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      {children}
+      {count}
+    </button>
+  )
+}
+
+;<Counter>**Clicks**: </Counter>
+
+## Callout
+
+```mdx
+<Callout>
+  Any `.md` or `.mdx` file will turn into a doc page and be displayed in
+  sidebar. You can also create a `meta.json` file to customize the page order
+  and title. <br /> Check the source code: https://github.com/shuding/nextra for
+  more information.
+</Callout>
+```
+
+<Callout>
+  Any `.md` or `.mdx` file will turn into a doc page and be displayed in
+  sidebar. You can also create a `meta.json` file to customize the page order
+  and title. <br /> Check the source code: https://github.com/shuding/nextra for
+  more information.
+</Callout>
+
+### Tabs
+
+<Tabs items={['npm', 'yarn', 'pnpm']} defaultIndex={1}>
+  <Tab>```bash npm i react react-dom next nextra ```</Tab>
+  <Tab>```bash yarn add react react-dom next nextra ```</Tab>
+  <Tab>```bash pnpm i react react-dom next nextra ```</Tab>
+</Tabs>
+
+<Tabs items={['npm', 'yarn', 'pnpm']} defaultIndex={1}>
+  <Tab>```bash npm i nextra-theme-docs ```</Tab>
+  <Tab>```bash yarn add nextra-theme-docs ```</Tab>
+  <Tab>```bash pnpm i nextra-theme-docs ```</Tab>
+</Tabs>

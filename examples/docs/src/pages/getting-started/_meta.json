@@ -1,0 +1,10 @@
+{
+  "index": "About",
+  "mdx": "MDX",
+  "components": "Components",
+  "configuration": "Configuration",
+  "ssg": "SSG",
+  "image": "Image",
+  "i18n": "Internationalization",
+  "latex": "LaTeX"
+}

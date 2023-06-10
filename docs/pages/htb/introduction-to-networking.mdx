@@ -1,0 +1,364 @@
+import Image from 'next/image'
+
+# Introduction to Networking Walkthrough
+
+## Networking Overview
+
+**What is the role of a network?**
+
+> To enable communication between computers.
+
+> In order to facilitate a network we use variety of `topologies`, `mediums` and `protocols`.
+
+**What's characteristic of a flat network?**
+
+> Not extremely difficult.
+
+> Not very secure.
+
+**How can we improve network security?**
+
+> Creating lots of smaller networks can build up a defense layers.
+
+> Pivoting around network is not difficult, but being quick and quiet is though.
+
+> Forcing attacker to pivot, slows him down.
+
+**How would you describe Access Control List?**
+
+> It's a method for creating specific entry and exit points.
+
+> It's similar to having an fence around your property.
+
+> You can still jump over the fence, but it's unusual activity that can be quickly detected
+> as malicious activity.
+
+**Why would you take time to document network purpose?**
+
+> Clarity. If you know what's the purpose then you can see if someone is misusing the network.
+
+**How would you describe Intrusion Detection Systems?**
+
+> This tools are deterrent to running network scans.
+
+**How would you describe a process of communicating your laptop with company's network?**
+
+> Internet is based on many smaller networks connected to each other.
+
+> We can have "home" network that is built from all devices that are connected to the internet.
+
+> At work we have another network built from all devices connected to it.
+
+> Communication between networks works in similar way to post office.
+
+> We sent different packets of data to different locations.
+
+> In order to send data between "home" and "work" we need to know an address.
+
+> On internet address is represented by `Uniform Resource Locator (URL)`.
+
+> Another way of describing an address on the internet is `Fuly Qualified Domain Name (FQDN)`.
+
+The difference between those two is specifity:
+
+- FQDN (www.hackthebox.com) - address of the building (general)
+
+- URL (https://www.hackthebox.eu/example?floor=2&office=dev&employee=17) - detailed address
+  with floor, office, room number and the crresponding person we should find there (specific)
+
+**What's the role of router & ISP**
+
+> Router is like our local post office. It forwards our packets to the main post office (Internet Service Provider). Main post office (ISP) uses
+> address register (Domain Name Service) to then convert address to geographical coordinates (IP address).
+
+Address is like URL (I may know the address and still don't know where to go)
+
+IP address is like geolocation - exatcly where it is on "planet" called Internet.
+
+When we know exact location (IP address) we send our packet through our distribution network (main post office/ISP).
+
+Host web server receives packet with request and sends us packet back with the data via post office (router) to the specified return address (my IP address).
+
+### Key Points
+
+Company network should consist of a least five separate networks!
+
+- The Web Server should be in a DMZ (Demilitarized Zone). Clients on the internet can communicate with the server, which is an easy access point to entire network.
+Placing server on separate network allows administrators to put networking protections between the web server and other devices.
+
+- Workstations should be on their own network. Best case scenario - each workstation have a Host-Based Firewall rule preventing it from talking to other workstations.
+
+- Putting workstations and servers on the same network, allows networking attacks like `spoofing` or `man in the middle`.
+
+- Switch and router should be put on an "Administration Network". The main goal is to prevent workstations from snooping in on any communication between these devices.
+
+- `OSPF` (Open Shortest Path First) -  this is a routing protocol for Internet Protocol (IP) networks. If router does not have a trusted network, anyone on the internal network
+will be able to send malicious advertisement and perform `man in the middle` attack.
+
+- IP Phones should be on their own network. It will prevent computers from eavesdropping on communication. Separate network is also recommended to prioritize traffic.
+This will result in lower latency (smaller lag). 
+
+- Printers should be on separate network. Securing printer is very difficult. For Windows, when printer tells computer authentication is required during a print job,
+that computer will attempt `NTLMv2` authentication, which allows for stealing passwords. Printers are also very persistent and usually process tons of sensitive information.
+
+**Things to avoid with printers:**
+
+- Printers should not be able to talk to the internet.
+
+- Workstation should not have been able to communicate to the printer over prot 445
+
+- Printer should not be able to initiate connections to workstations. In some cases, printer/scanner combinations should be able to communicate to a mail server to email scanned
+documents.
+
+## Network Types
+
+**What are `types` and `topologies`?**
+
+> Networks have different structures and set ups. For this reason we use `types` and `topologies` to categorize them.
+
+**What are most common network types?**
+
+|Network Type | Definition |
+| ---- | ----- |
+| Wide Area Network (WAN) | Internet |
+| Local Area Network (LAN) | Internal Networks (Ex: Home or Office) |
+| Wireless Local Area Network (WLAN) | Internal Networks accessible over Wi-Fi |
+| Virtual Private Network (VPN) | Connects multiple network sites to one `LAN` |
+
+**Describe WAN Network**
+
+> WAN is commonly referred as `The Internet`. In networking we often have WAN and LAN addresses. WAN address is generally accessed by the Internet. WAN is not only limited to
+> the internet. It's just a large number of LAN's joined together. Large companies or government agencies will have an "Internal WAN" (Intranet). To identify if the network is
+> a WAN network, we should use a WAN Specific routing protocol (BGP). IP Schema should not be within RFC 1918 (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16).
+
+**Describe LAN/WLAN Network**
+
+> LAN's (Local Area Network) and WLAN's (Wireless Local Area Network) typically assign IP Addresses designated for local use. 
+> Assigning routable IP Address is much less common, but possible.
+
+> Only difference between LAN or WLAN is the ability to transmit data without cables. This may be important security wise.
+
+**Describe VPN Network**
+
+> There are three main types of Virtual Private Networks (VPN): 
+
+> - `Site-To-Site VPN` - Both client and server are Network Devices. They share entire network ranges. This is most commonly used to join company networks together
+> over the Internet. Multiple locations communicate over the Internet as if they were local.
+
+> - `Remote Access VPN` - Computer create virtual interface that bahaves as if it is on a client's network. Common example is `OpenVPN`. Important piece of these types of VPN's
+> is routing table which is created when joining VPN. When VPN only creates routes for specific network this is called `split-tunnel VPN`. In this case Internet connection is 
+> not going out of the VPN.
+
+> - `SSL VPN` - VPN done within web browser. It streams applications to your web browser. 
+
+**Describe GAN Network**
+
+> Global Area Network (GAN) - worldwide network (the Internet). Some international companies also maintain isolated networks that span several `WAN`s. It uses glass fiber
+> infractructure to create wide-area network and then interconnects them by international undersea cables or satellite transmission.
+
+**Describe MAN Network**
+
+> Metropolian Area Network (MAN) - broadband telecommunications network that connects several LAN's in geographical proximity. It uses high-performance connections allowing for
+> significantly higher data throughput than the Internet. Transmission speed should be comparable to LAN.
+
+> Multiple MANs can be integrated into WAN and then intgrated further to GAN.
+
+**Describe PAN/WPAN Network**
+
+> Personal Area Network (PAN) / Wireless Personal Area Network (WPAN) - it's a form of ad hoc network between two modern devices to enable data exchange. 
+> Wireless version is based on Bluetooth or Wireless USB technologies. Network established via Bluetooth is called `Piconet`. These networks ususally extend only a few meters.
+> They are not suitable for connecting devices in separate buildings or even rooms.
+
+> WPAN's are used to control and monitor applications with low data rates. For home devices commonly used protocols are: `Insteon`, `Z-Wave`, `ZigBee`.
+
+## Networking Topologies
+
+**What is a topology?**
+
+> Arrangement both physical and logical of devices in a network. 
+
+All topologies include:
+
+> Hosts - end-users that are actively using the network (clients, servers).
+
+> Network Components - elements (routers, switches, bridges) responsible for distribution of communication. They allow logical connection between hosts.
+
+**What is `transmission medium layout`?**
+
+> Plan to connect physical devices of the network. Cables, positon of nodes and connections between them are all part of transmission medium layout.
+
+> `Logical topology` - describes how signals act on the network and how data is transmitted across physical devices.
+
+Connections can be divided into three areas:
+
+|Wired connections | Wireless connections |
+| ---- | ---- |
+| Coaxial cabling | Wi-Fi |
+| Glass fiber cabling | Cellular |
+| Twisted-pair cabling | Satellite |
+| and others | and others |
+
+Nodes network components can be divided into:
+
+|||||
+|---|---|---|---|
+| Repeaters | Hubs | Bridges | Switches |
+| Router/Modem | Gateways | Firewalls |
+
+Nodes are connection points to transmitters and receivers of electrical, optical or radio signals in the medium.
+
+**Describe basic types of network topologies.**
+
+### Point-to-Point
+
+Simplest topology. Physical link exists only between `two hosts`. It enables mutual communication.
+
+It's basic model for traditional telephon networks. It should not be confused with `P2P (Peer-to-Peer)` architecture.
+
+<Image src="/assets/topo_p2p.png" width={2576} height={684} /> 
+
+> Source: https://academy.hackthebox.com/module/34/section/299 
+
+### Bus 
+
+All host connected via transmission medium (cabel). Every host has access to signals transmitted
+over it. There is no central component that controls processes on it.
+
+In this model **only one host sends data**, the rest receive and evaluate if data was intended for them.
+
+<Image src="/assets/topo_bus.png" width={2576} height={1294} /> 
+
+> Source: https://academy.hackthebox.com/module/34/section/299 
+
+### Star 
+
+In this model we have a central network component (router, hub or switch) that is connected to all hosts.
+Each host is connected via separate link. Component role is to forward data packets to its destination.
+It receives data and then forwards it to destination (acts like middleware).
+
+<Image src="/assets/topo_star.png" width={2576} height={1707} /> 
+
+> Source: https://academy.hackthebox.com/module/34/section/299 
+
+### Ring 
+
+Physical ring connects each host with two cabels:
+
+- one for `incoming` signals
+- the other for `outgoing` signals
+
+Control and access over this type of network are regulated by a protocol to which all stations adhere.
+
+`Logical` ring topology is based on a physical star topology, where distributor simulates ring.
+
+<Image src="/assets/topo_ring.png" width={2576} height={1746} /> 
+
+> Source: https://academy.hackthebox.com/module/34/section/299 
+
+### Mesh 
+
+In a fully meshed structure each host is connected to every other host in the network.
+
+This technique is used for `WAN` and `MAN` networks to ensure high reliability and bandwidth.
+
+Each node has the same routing functions and knows the neighboring nodes.
+
+In the `partially meshed structure`, the endpoints are connected by only one connection.
+
+<Image src="/assets/topo_mesh.png" width={2576} height={2024} /> 
+
+> Source: https://academy.hackthebox.com/module/34/section/299 
+
+### Tree 
+
+Extended star topology. Especially useful when several topologies are combined.
+
+<Image src="/assets/topo_tree.png" width={2576} height={1715} /> 
+
+> Source: https://academy.hackthebox.com/module/34/section/299 
+
+### Hybrid 
+
+Mix of at least two different standard topologies. 
+
+<Image src="/assets/topo_hybrid.png" width={2576} height={1726} /> 
+
+> Source: https://academy.hackthebox.com/module/34/section/299 
+
+### Daisy Chain 
+
+Multiple hosts connected by a cable from one node to another. It creates series of connections (chain) between hardware.
+Popular in automation technology. This type of connection is dependant on physical arrangement.
+
+<Image src="/assets/topo_daisy-chain.png" width={2576} height={1716} /> 
+
+> Source: https://academy.hackthebox.com/module/34/section/299 
+
+## Proxies
+
+**What is a proxy?**
+
+It's a device or service that sits in the middle of a connection and acts as a mediator.
+Devices like that have to be able to inspect the contents of the traffic. Without it,
+device would be called `gateway`.
+
+Proxies almost always operate at Layer 7 of the OSI Model. Most common proxy types are:
+
+- `Dedicated Proxy / Forward Proxy`
+- `Reverse Proxy`
+- `Transparent Proxy`
+
+**What is forward proxy?**
+
+Client makes a request to a computer and that computer carries out the request.
+
+For example, in corporate network, sensitive computers may not have direct access to the Internet.
+So to access a website we have to go through a proxy (web filter).
+
+**What is a reverse proxy?**
+
+Forward proxy filters outgoing requests through network.
+
+Reverse proxy filters incoming requests.
+
+CloudFlare is a good example of reverse proxy. It is used to filter the amount (and type) of traffic
+that gets sent to the webservers.
+
+Penetration Testers will configure reverse proxies on infected endpoint. This is useful to bypass
+firewalls or evade logging.
+
+Another common reverse proxy examples is `ModSecurity`.
+
+## Networking Models
+
+## The OSI Model
+
+## The TCP/IP Model
+
+## Network Layer
+
+## IPv4 Addresses
+
+## Subnetting
+
+## MAC Addresses
+
+## IPv6 Addresses
+
+## Networking Terminology
+
+## Common Protocols
+
+## Wireless Networks
+
+## Virtual Private Networks
+
+## Vendor Specific Information
+
+## Key Exchange Mechanisms
+
+## Authentication Protocols
+
+## TCP/UDP Connections
+
+## Cryptography
